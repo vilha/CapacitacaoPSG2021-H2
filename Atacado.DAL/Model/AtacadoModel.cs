@@ -102,7 +102,7 @@ namespace Atacado.DAL.Model
 
             modelBuilder.Entity<UnidadesFederacao>()
                 .HasMany(e => e.Mesoregioes)
-                .WithRequired(e => e.UnidadesFederacao)
+                .WithRequired(e => e.UFs)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UnidadesFederacao>()
