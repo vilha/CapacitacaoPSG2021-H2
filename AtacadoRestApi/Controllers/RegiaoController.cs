@@ -6,12 +6,22 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace AtacadoRestApi.Controllers
 {
+    /// <summary>
+    /// Serviços para a tabela região
+    /// </summary>
+    [RoutePrefix("AtacadoRestApi")]
     public class RegiaoController : ApiController
     {
-        // GET: api/Regiao
+        /// <summary>
+        /// Obter todos os registros da tabela.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ResponseType(typeof(List<RegiaoPoco>))]
         public List<RegiaoPoco> Get()
         {
             AtacadoModel contexto = new AtacadoModel();
@@ -52,8 +62,14 @@ namespace AtacadoRestApi.Controllers
             return regioesPoco;
         }
 
-        // GET: api/Regiao/5
-        public RegiaoPoco Get(int id)
+        /// <summary>
+        /// Obter um registro, baseado na chave primaria.
+        /// </summary>
+        /// <param name="id">Chave primaria do registro</param>
+        /// <returns></returns>
+        [HttpGet]
+        [ResponseType(typeof(RegiaoPoco))]
+        public RegiaoPoco Get([FromUri] int id)
         {
             AtacadoModel contexto = new AtacadoModel();
 
@@ -91,7 +107,13 @@ namespace AtacadoRestApi.Controllers
             return regiaoPoco;
         }
 
-        // POST: api/Regiao
+        /// <summary>
+        /// Criar registro na tabela
+        /// </summary>
+        /// <param name="poco">Objeto que sera incluido na tabela</param>
+        /// <returns></returns>
+        [HttpPost]
+        [ResponseType(typeof(RegiaoPoco))]
         public RegiaoPoco Post([FromBody] RegiaoPoco poco)
         {
             Regiao regiao = new Regiao();
@@ -112,8 +134,15 @@ namespace AtacadoRestApi.Controllers
             return novoPoco;
         }
 
-        // PUT: api/Regiao/5
-        public RegiaoPoco Put(int id, [FromBody] RegiaoPoco poco)
+        /// <summary>
+        /// Atualizar registro na tabela
+        /// </summary>
+        /// <param name="id">Chave primaria do registro</param>
+        /// <param name="poco">Objeto que sera atualizado</param>
+        /// <returns></returns>
+        [HttpPut]
+        [ResponseType(typeof(RegiaoPoco))]
+        public RegiaoPoco Put([FromUri] int id, [FromBody] RegiaoPoco poco)
         {
             AtacadoModel contexto = new AtacadoModel();
             Regiao regiao = contexto.Regioes.SingleOrDefault(reg => reg.RegiaoID == id);
@@ -133,8 +162,14 @@ namespace AtacadoRestApi.Controllers
 
         }
 
-        // DELETE: api/Regiao/5
-        public RegiaoPoco Delete(int id)
+        /// <summary>
+        /// Excluir registro da tabela
+        /// </summary>
+        /// <param name="id">Chave primaria do registro</param>
+        /// <returns></returns>
+        [HttpDelete]
+        [ResponseType(typeof(RegiaoPoco))]
+        public RegiaoPoco Delete([FromUri] int id)
         {
             AtacadoModel contexto = new AtacadoModel();
             Regiao regiao = contexto.Regioes.SingleOrDefault(reg => reg.RegiaoID == id);

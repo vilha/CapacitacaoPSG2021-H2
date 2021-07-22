@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AtacadoRestApi</name>
+    </assembly>
+    <members>
+        <member name="T:AtacadoRestApi.SwaggerConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AtacadoRestApi.SwaggerConfig.Register">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:AtacadoRestApi.Controllers.RegiaoController">
+            <summary>
+            Serviços para a tabela região
+            </summary>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.RegiaoController.Get">
+            <summary>
+            Obter todos os registros da tabela.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.RegiaoController.Get(System.Int32)">
+            <summary>
+            Obter um registro, baseado na chave primaria.
+            </summary>
+            <param name="id">Chave primaria do registro</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.RegiaoController.Post(Atacado.POCO.Model.RegiaoPoco)">
+            <summary>
+            Criar registro na tabela
+            </summary>
+            <param name="poco">Objeto que sera incluido na tabela</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.RegiaoController.Put(System.Int32,Atacado.POCO.Model.RegiaoPoco)">
+            <summary>
+            Atualizar registro na tabela
+            </summary>
+            <param name="id">Chave primaria do registro</param>
+            <param name="poco">Objeto que sera atualizado</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.RegiaoController.Delete(System.Int32)">
+            <summary>
+            Excluir registro da tabela
+            </summary>
+            <param name="id">Chave primaria do registro</param>
+            <returns></returns>
+        </member>
+        <member name="T:AtacadoRestApi.Controllers.UFController">
+            <summary>
+            Serviços para a tabela UnidadesFederacao
+            </summary>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.UFController.Get">
+            <summary>
+            Obter todos os registros da tabela.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.UFController.Get(System.Int32)">
+            <summary>
+            Obter um registro, baseado na chave primaria.
+            </summary>
+            <param name="id">Chave primaria do registro</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.UFController.Post(Atacado.POCO.Model.UFPoco)">
+            <summary>
+            Criar registro na tabela
+            </summary>
+            <param name="poco">Objeto que sera incluido na tabela</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.UFController.Put(System.Int32,Atacado.POCO.Model.UFPoco)">
+            <summary>
+            Atualizar registro na tabela
+            </summary>
+            <param name="id">Chave primaria do registro</param>
+            <param name="poco">Objeto que sera atualizado</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.UFController.Delete(System.Int32)">
+            <summary>
+            Excluir registro da tabela
+            </summary>
+            <param name="id">Chave primaria do registro</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

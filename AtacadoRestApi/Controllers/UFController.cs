@@ -6,12 +6,22 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace AtacadoRestApi.Controllers
 {
+    /// <summary>
+    /// Serviços para a tabela UnidadesFederacao
+    /// </summary>
+    [RoutePrefix("AtacadoRestApi")]
     public class UFController : ApiController
     {
-        // GET: api/UF
+        /// <summary>
+        /// Obter todos os registros da tabela.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ResponseType(typeof(List<UFPoco>))]
         public List<UFPoco> Get()
         {
             AtacadoModel contexto = new AtacadoModel();
@@ -29,8 +39,14 @@ namespace AtacadoRestApi.Controllers
             return ufPoco;
         }
 
-        // GET: api/UF/5
-        public UFPoco Get(int id)
+        /// <summary>
+        /// Obter um registro, baseado na chave primaria.
+        /// </summary>
+        /// <param name="id">Chave primaria do registro</param>
+        /// <returns></returns>
+        [HttpGet]
+        [ResponseType(typeof(UFPoco))]
+        public UFPoco Get([FromUri] int id)
         {
             AtacadoModel contexto = new AtacadoModel();
 
@@ -48,7 +64,13 @@ namespace AtacadoRestApi.Controllers
             return ufPoco;
         }
 
-        // POST: api/UF
+        /// <summary>
+        /// Criar registro na tabela
+        /// </summary>
+        /// <param name="poco">Objeto que sera incluido na tabela</param>
+        /// <returns></returns>
+        [HttpPost]
+        [ResponseType(typeof(UFPoco))]
         public UFPoco Post([FromBody] UFPoco poco)
         {
             UnidadesFederacao uf = new UnidadesFederacao();
@@ -71,8 +93,15 @@ namespace AtacadoRestApi.Controllers
             return novoPoco;
         }
 
-        // PUT: api/UF/5
-        public UFPoco Put(int id, [FromBody] UFPoco poco)
+        /// <summary>
+        /// Atualizar registro na tabela
+        /// </summary>
+        /// <param name="id">Chave primaria do registro</param>
+        /// <param name="poco">Objeto que sera atualizado</param>
+        /// <returns></returns>
+        [HttpPut]
+        [ResponseType(typeof(UFPoco))]
+        public UFPoco Put([FromUri] int id, [FromBody] UFPoco poco)
         {
             AtacadoModel contexto = new AtacadoModel();
             UnidadesFederacao uf = contexto.UFs.SingleOrDefault(reg => reg.UFID == id);
@@ -94,8 +123,14 @@ namespace AtacadoRestApi.Controllers
 
         }
 
-        // DELETE: api/UF/5
-        public UFPoco Delete(int id)
+        /// <summary>
+        /// Excluir registro da tabela
+        /// </summary>
+        /// <param name="id">Chave primaria do registro</param>
+        /// <returns></returns>
+        [HttpDelete]
+        [ResponseType(typeof(UFPoco))]
+        public UFPoco Delete([FromUri] int id)
         {
             AtacadoModel contexto = new AtacadoModel();
             UnidadesFederacao uf = contexto.UFs.SingleOrDefault(reg => reg.UFID == id);
