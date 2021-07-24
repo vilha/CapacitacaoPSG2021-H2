@@ -14,8 +14,13 @@ namespace AtacadoRestApi.Controllers
     /// Serviços para a tabela UnidadesFederacao
     /// </summary>
     [RoutePrefix("AtacadoRestApi")]
-    public class UFController : ApiController
+    public class UFController : BaseController
     {
+        /// <summary>
+        /// Chamado do controlador base
+        /// </summary>
+        public UFController() : base() { }
+
         /// <summary>
         /// Obter todos os registros da tabela.
         /// </summary>
@@ -24,9 +29,7 @@ namespace AtacadoRestApi.Controllers
         [ResponseType(typeof(List<UFPoco>))]
         public List<UFPoco> Get()
         {
-            AtacadoModel contexto = new AtacadoModel();
-
-            List<UFPoco> ufPoco = contexto.UFs.Select(
+            List<UFPoco> ufPoco = this.contexto.UFs.Select(
                 novo => new UFPoco()
                 {
                     UFID = novo.UFID,
@@ -48,9 +51,7 @@ namespace AtacadoRestApi.Controllers
         [ResponseType(typeof(UFPoco))]
         public UFPoco Get([FromUri] int id)
         {
-            AtacadoModel contexto = new AtacadoModel();
-
-            UFPoco ufPoco = contexto.UFs
+            UFPoco ufPoco = this.contexto.UFs
                 .Where(reg => reg.UFID == id)
                 .Select(novo => new UFPoco()
                 {
@@ -79,18 +80,11 @@ namespace AtacadoRestApi.Controllers
             uf.RegiaoID = poco.RegiaoID;
             uf.datainsert = DateTime.Now;
 
-            AtacadoModel contexto = new AtacadoModel();
-            contexto.UFs.Add(uf);
-            contexto.SaveChanges();
+            this.contexto.UFs.Add(uf);
+            this.contexto.SaveChanges();
 
-            UFPoco novoPoco = new UFPoco();
-            novoPoco.UFID = uf.UFID;
-            novoPoco.Descricao = uf.Descricao;
-            novoPoco.SiglaUF = uf.SiglaUF;
-            novoPoco.RegiaoID = uf.RegiaoID;
-            novoPoco.DataInclusao = uf.datainsert;
-
-            return novoPoco;
+            int id = uf.UFID;
+            return this.Get(id);
         }
 
         /// <summary>
@@ -103,23 +97,15 @@ namespace AtacadoRestApi.Controllers
         [ResponseType(typeof(UFPoco))]
         public UFPoco Put([FromUri] int id, [FromBody] UFPoco poco)
         {
-            AtacadoModel contexto = new AtacadoModel();
-            UnidadesFederacao uf = contexto.UFs.SingleOrDefault(reg => reg.UFID == id);
+            UnidadesFederacao uf = this.contexto.UFs.SingleOrDefault(reg => reg.UFID == id);
 
             uf.Descricao = poco.Descricao;
             uf.SiglaUF = poco.SiglaUF;
             uf.RegiaoID = poco.RegiaoID;
-            contexto.Entry<UnidadesFederacao>(uf).State = System.Data.Entity.EntityState.Modified;
-            contexto.SaveChanges();
+            this.contexto.Entry<UnidadesFederacao>(uf).State = System.Data.Entity.EntityState.Modified;
+            this.contexto.SaveChanges();
 
-            UFPoco novoPoco = new UFPoco();
-            novoPoco.UFID = uf.UFID;
-            novoPoco.Descricao = uf.Descricao;
-            novoPoco.SiglaUF = uf.SiglaUF;
-            novoPoco.RegiaoID = uf.RegiaoID;
-            novoPoco.DataInclusao = uf.datainsert;
-
-            return novoPoco;
+            return this.Get(id);
 
         }
 
@@ -132,19 +118,10 @@ namespace AtacadoRestApi.Controllers
         [ResponseType(typeof(UFPoco))]
         public UFPoco Delete([FromUri] int id)
         {
-            AtacadoModel contexto = new AtacadoModel();
-            UnidadesFederacao uf = contexto.UFs.SingleOrDefault(reg => reg.UFID == id);
-            contexto.Entry<UnidadesFederacao>(uf).State = System.Data.Entity.EntityState.Deleted;
-            contexto.SaveChanges();
-
-            UFPoco novoPoco = new UFPoco();
-            novoPoco.UFID = uf.UFID;
-            novoPoco.Descricao = uf.Descricao;
-            novoPoco.SiglaUF = uf.SiglaUF;
-            novoPoco.RegiaoID = uf.RegiaoID;
-            novoPoco.DataInclusao = uf.datainsert;
-
-            return novoPoco;
+            UnidadesFederacao uf = this.contexto.UFs.SingleOrDefault(reg => reg.UFID == id);
+            this.contexto.Entry<UnidadesFederacao>(uf).State = System.Data.Entity.EntityState.Deleted;
+            this.contexto.SaveChanges();
+            return this.Get(id);
         }
     }
 }

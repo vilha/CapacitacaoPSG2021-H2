@@ -14,8 +14,13 @@ namespace AtacadoRestApi.Controllers
     /// Serviços para a tabela região
     /// </summary>
     [RoutePrefix("AtacadoRestApi")]
-    public class RegiaoController : ApiController
+    public class RegiaoController : BaseController
     {
+        /// <summary>
+        /// Chamado do controlador base
+        /// </summary>
+        public RegiaoController() : base() { }
+
         /// <summary>
         /// Obter todos os registros da tabela.
         /// </summary>
@@ -24,9 +29,6 @@ namespace AtacadoRestApi.Controllers
         [ResponseType(typeof(List<RegiaoPoco>))]
         public List<RegiaoPoco> Get()
         {
-            AtacadoModel contexto = new AtacadoModel();
-
-
             //List<RegiaoPoco> regioesPoco = (
             //    from novo in contexto.Regioes
             //    select new RegiaoPoco() {
@@ -37,8 +39,9 @@ namespace AtacadoRestApi.Controllers
             //    }).ToList();
 
             //Versão LINQ to Entities
-            List<RegiaoPoco> regioesPoco = contexto.Regioes.Select(
-                novo => new RegiaoPoco()
+            List<RegiaoPoco> regioesPoco =
+                this.contexto.Regioes
+                .Select(novo => new RegiaoPoco()
                 {
                     RegiaoID = novo.RegiaoID,
                     Descricao = novo.Descricao,
@@ -71,10 +74,8 @@ namespace AtacadoRestApi.Controllers
         [ResponseType(typeof(RegiaoPoco))]
         public RegiaoPoco Get([FromUri] int id)
         {
-            AtacadoModel contexto = new AtacadoModel();
-
             RegiaoPoco regiaoPoco = (
-                from novo in contexto.Regioes
+                from novo in this.contexto.Regioes
                 where novo.RegiaoID == id
                 select new RegiaoPoco()
                 {
@@ -84,7 +85,7 @@ namespace AtacadoRestApi.Controllers
                     DataInclusao = novo.datainsert
                 }).FirstOrDefault();
 
-            //Modo LING to Entity
+            //Modo LINQ to Entity
             //RegiaoPoco regiaoPoco = contexto.Regioes
             //    .Where(reg => reg.RegiaoID == id)
             //    .Select(novo => new RegiaoPoco() {
@@ -117,21 +118,16 @@ namespace AtacadoRestApi.Controllers
         public RegiaoPoco Post([FromBody] RegiaoPoco poco)
         {
             Regiao regiao = new Regiao();
+
             regiao.Descricao = poco.Descricao;
             regiao.SiglaRegiao = poco.SiglaRegiao;
             regiao.datainsert = DateTime.Now;
 
-            AtacadoModel contexto = new AtacadoModel();
-            contexto.Regioes.Add(regiao);
-            contexto.SaveChanges();
+            this.contexto.Regioes.Add(regiao);
+            this.contexto.SaveChanges();
 
-            RegiaoPoco novoPoco = new RegiaoPoco();
-            novoPoco.RegiaoID = regiao.RegiaoID;
-            novoPoco.Descricao = regiao.Descricao;
-            novoPoco.SiglaRegiao = regiao.SiglaRegiao;
-            novoPoco.DataInclusao = regiao.datainsert;
-
-            return novoPoco;
+            int id = regiao.RegiaoID;
+            return this.Get(id);
         }
 
         /// <summary>
@@ -144,21 +140,14 @@ namespace AtacadoRestApi.Controllers
         [ResponseType(typeof(RegiaoPoco))]
         public RegiaoPoco Put([FromUri] int id, [FromBody] RegiaoPoco poco)
         {
-            AtacadoModel contexto = new AtacadoModel();
-            Regiao regiao = contexto.Regioes.SingleOrDefault(reg => reg.RegiaoID == id);
+            Regiao regiao = this.contexto.Regioes.SingleOrDefault(reg => reg.RegiaoID == id);
 
             regiao.Descricao = poco.Descricao;
             regiao.SiglaRegiao = poco.SiglaRegiao;
-            contexto.Entry<Regiao>(regiao).State = System.Data.Entity.EntityState.Modified;
-            contexto.SaveChanges();
+            this.contexto.Entry<Regiao>(regiao).State = System.Data.Entity.EntityState.Modified;
+            this.contexto.SaveChanges();
 
-            RegiaoPoco novoPoco = new RegiaoPoco();
-            novoPoco.RegiaoID = regiao.RegiaoID;
-            novoPoco.Descricao = regiao.Descricao;
-            novoPoco.SiglaRegiao = regiao.SiglaRegiao;
-            novoPoco.DataInclusao = regiao.datainsert;
-
-            return novoPoco;
+            return this.Get(id);
 
         }
 
@@ -171,18 +160,10 @@ namespace AtacadoRestApi.Controllers
         [ResponseType(typeof(RegiaoPoco))]
         public RegiaoPoco Delete([FromUri] int id)
         {
-            AtacadoModel contexto = new AtacadoModel();
-            Regiao regiao = contexto.Regioes.SingleOrDefault(reg => reg.RegiaoID == id);
-            contexto.Entry<Regiao>(regiao).State = System.Data.Entity.EntityState.Deleted;
-            contexto.SaveChanges();
-
-            RegiaoPoco novoPoco = new RegiaoPoco();
-            novoPoco.RegiaoID = regiao.RegiaoID;
-            novoPoco.Descricao = regiao.Descricao;
-            novoPoco.SiglaRegiao = regiao.SiglaRegiao;
-            novoPoco.DataInclusao = regiao.datainsert;
-
-            return novoPoco;
+            Regiao regiao = this.contexto.Regioes.SingleOrDefault(reg => reg.RegiaoID == id);
+            this.contexto.Entry<Regiao>(regiao).State = System.Data.Entity.EntityState.Deleted;
+            this.contexto.SaveChanges();
+            return this.Get(id);
         }
     }
 }
