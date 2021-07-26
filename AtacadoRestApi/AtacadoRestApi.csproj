@@ -101,6 +101,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\MunicipioController.cs" />
     <Compile Include="Controllers\RegiaoController.cs" />
     <Compile Include="Controllers\UFController.cs" />
@@ -131,6 +132,14 @@
     <ProjectReference Include="..\Atacado.POCO\Atacado.POCO.csproj">
       <Project>{1b92eb19-0029-4752-a1dd-43936b4f2905}</Project>
       <Name>Atacado.POCO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Atacado.Repository\Atacado.Repository.csproj">
+      <Project>{e0df5c04-03b3-4e19-838a-cad512043fc2}</Project>
+      <Name>Atacado.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Atacado.Service\Atacado.Service.csproj">
+      <Project>{baa06443-ec1a-4db6-873d-84257e886f88}</Project>
+      <Name>Atacado.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

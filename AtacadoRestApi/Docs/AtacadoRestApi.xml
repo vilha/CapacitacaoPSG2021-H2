@@ -14,9 +14,88 @@
             
             </summary>
         </member>
+        <member name="T:AtacadoRestApi.Controllers.CategoriaController">
+            <summary>
+            Serviços de categoria utilizando disegn patterns.
+            </summary>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.CategoriaController.#ctor">
+            <summary>
+            Construtor da classe.
+            </summary>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.CategoriaController.Get(System.Int32)">
+            <summary>
+            Obter registro por chave primaria.
+            </summary>
+            <param name="id">Chave primaria</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.CategoriaController.Get">
+            <summary>
+            Obter todos os registros.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.CategoriaController.Dispose(System.Boolean)">
+            <summary>
+            Dispose do serviço.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="T:AtacadoRestApi.Controllers.MunicipioController">
+            <summary>
+            Serviços para a tabela municipios
+            </summary>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.MunicipioController.#ctor">
+            <summary>
+            Chamado do controlador base
+            </summary>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.MunicipioController.Get(System.String)">
+            <summary>
+            Obter todos os registros da tabela.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.MunicipioController.Get(System.Int32)">
+            <summary>
+            Obter um registro, baseado na chave primaria.
+            </summary>
+            <param name="id">Chave primaria do registro</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.MunicipioController.Post(Atacado.POCO.Model.MunicipioPoco)">
+            <summary>
+            Criar registro na tabela
+            </summary>
+            <param name="poco">Objeto que sera incluido na tabela</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.MunicipioController.Put(System.Int32,Atacado.POCO.Model.MunicipioPoco)">
+            <summary>
+            Atualizar registro na tabela
+            </summary>
+            <param name="id">Chave primaria do registro</param>
+            <param name="poco">Objeto que sera atualizado</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.MunicipioController.Delete(System.Int32)">
+            <summary>
+            Excluir registro da tabela
+            </summary>
+            <param name="id">Chave primaria do registro</param>
+            <returns></returns>
+        </member>
         <member name="T:AtacadoRestApi.Controllers.RegiaoController">
             <summary>
             Serviços para a tabela região
+            </summary>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.RegiaoController.#ctor">
+            <summary>
+            Chamado do controlador base
             </summary>
         </member>
         <member name="M:AtacadoRestApi.Controllers.RegiaoController.Get">
@@ -57,6 +136,11 @@
         <member name="T:AtacadoRestApi.Controllers.UFController">
             <summary>
             Serviços para a tabela UnidadesFederacao
+            </summary>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.UFController.#ctor">
+            <summary>
+            Chamado do controlador base
             </summary>
         </member>
         <member name="M:AtacadoRestApi.Controllers.UFController.Get">
