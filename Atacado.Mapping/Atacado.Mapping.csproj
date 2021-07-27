@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1B92EB19-0029-4752-A1DD-43936B4F2905}</ProjectGuid>
+    <ProjectGuid>{3A37F1FE-0306-448B-ABBC-97D1580976A6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Atacado.POCO</RootNamespace>
-    <AssemblyName>Atacado.POCO</AssemblyName>
+    <RootNamespace>Atacado.Mapping</RootNamespace>
+    <AssemblyName>Atacado.Mapping</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,13 +44,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\CategoriaPoco.cs" />
-    <Compile Include="Model\MunicipioPoco.cs" />
-    <Compile Include="Model\SubcategoriaPoco.cs" />
-    <Compile Include="Model\UFPoco.cs" />
-    <Compile Include="Model\RegiaoPoco.cs" />
+    <Compile Include="Ancestor\BaseMapping.cs" />
+    <Compile Include="Ancestor\IMapping.cs" />
+    <Compile Include="Estoque\CategoriaMap.cs" />
+    <Compile Include="Estoque\SubcategoriaMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Atacado.DAL\Atacado.DAL.csproj">
+      <Project>{4fbaa4ac-f7a3-4205-9a0f-9154d1759d66}</Project>
+      <Name>Atacado.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Atacado.POCO\Atacado.POCO.csproj">
+      <Project>{1b92eb19-0029-4752-a1dd-43936b4f2905}</Project>
+      <Name>Atacado.POCO</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

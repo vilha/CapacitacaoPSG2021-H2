@@ -13,17 +13,17 @@ namespace AtacadoRestApi.Controllers
     /// <summary>
     /// Serviços de categoria utilizando disegn patterns.
     /// </summary>
-    [RoutePrefix("categoria")]
-    public class CategoriaController : BaseController
+    [RoutePrefix("subcategoria")]
+    public class SubcategoriaController : BaseController
     {
-        private CategoriaService servico;
+        private SubcategoriaService servico;
 
         /// <summary>
         /// Construtor da classe.
         /// </summary>
-        public CategoriaController() : base()
+        public SubcategoriaController() : base()
         {
-            this.servico = new CategoriaService(this.contexto);
+            this.servico = new SubcategoriaService(this.contexto);
         }
 
         /// <summary>
@@ -31,9 +31,9 @@ namespace AtacadoRestApi.Controllers
         /// </summary>
         /// <param name="id">Chave primaria</param>
         /// <returns></returns>
-        [ResponseType(typeof(CategoriaPoco))]
+        [ResponseType(typeof(SubcategoriaPoco))]
         [HttpGet]
-        public CategoriaPoco Get([FromUri] int id)
+        public SubcategoriaPoco Get([FromUri] int id)
         {
             return this.servico.Obter(id);
         }
@@ -42,9 +42,9 @@ namespace AtacadoRestApi.Controllers
         /// Obter todos os registros.
         /// </summary>
         /// <returns></returns>
-        [ResponseType(typeof(List<CategoriaPoco>))]
+        [ResponseType(typeof(List<SubcategoriaPoco>))]
         [HttpGet]
-        public List<CategoriaPoco> Get()
+        public List<SubcategoriaPoco> Get()
         {
             return this.servico.ObterTodos().ToList();
         }
@@ -54,7 +54,7 @@ namespace AtacadoRestApi.Controllers
         /// </summary>
         /// <param name="poco">Objeto a ser incluso.</param>
         /// <returns></returns>
-        public CategoriaPoco Post([FromBody] CategoriaPoco poco)
+        public SubcategoriaPoco Post([FromBody] SubcategoriaPoco poco)
         {
             return this.servico.Incluir(poco);
         }
@@ -64,7 +64,7 @@ namespace AtacadoRestApi.Controllers
         /// </summary>
         /// <param name="poco">Objeto a ser atualizado.</param>
         /// <returns></returns>
-        public CategoriaPoco Put([FromBody] CategoriaPoco poco)
+        public SubcategoriaPoco Put([FromBody] SubcategoriaPoco poco)
         {
             return this.servico.Atualizar(poco);
         }
@@ -74,7 +74,7 @@ namespace AtacadoRestApi.Controllers
         /// </summary>
         /// <param name="id">Chave primaria</param>
         /// <returns></returns>
-        public CategoriaPoco Delete([FromUri] int id)
+        public SubcategoriaPoco Delete([FromUri] int id)
         {
             return this.servico.Excluir(id);
         }

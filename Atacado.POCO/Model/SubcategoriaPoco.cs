@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Atacado.POCO.Model
 {
-    public class CategoriaPoco
+    public class SubcategoriaPoco
     {
-        public int Categoriaid { get; set; }
+        public int SubcategoriaID { get; set; }
+
+        public int CategoriaID { get; set; }
 
         public string Descricao { get; set; }
 

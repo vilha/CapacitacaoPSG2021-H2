@@ -8,69 +8,59 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Atacado.Mapping.Estoque;
 
 namespace Atacado.Service.Estoque
 {
     public class CategoriaService : IService<CategoriaPoco>
     {
-        public CategoriaRepository repositorio;
+        private CategoriaRepository repositorio;
+
+        private CategoriaMap mapa;
 
         public CategoriaService(DbContext contexto)
         {
             this.repositorio = new CategoriaRepository(contexto);
+            this.mapa = new CategoriaMap();
         }
 
         public CategoriaPoco Obter(int id)
         {
             categoria dominio = this.repositorio.Read(cat => cat.catid == id);
-            CategoriaPoco poco = new CategoriaPoco()
-            {
-                Categoriaid = dominio.catid,
-                Descricao = dominio.descricao,
-                DataInclusao = dominio.datainsert
-            };
+            CategoriaPoco poco = this.mapa.GetMapper.Map<CategoriaPoco>(dominio);
             return poco;
         }
 
         public IEnumerable<CategoriaPoco> ObterTodos()
         {
-            List<CategoriaPoco> listaPoco = this.repositorio.Browsable()
-                .Select(cat => new CategoriaPoco() 
-                {
-                    Categoriaid = cat.catid,
-                    Descricao = cat.descricao,
-                    DataInclusao = cat.datainsert
-                }
-                ).ToList();
+            List<categoria> lista = this.repositorio.Browsable().ToList();
+            List<CategoriaPoco> listaPoco = this.mapa.GetMapper.Map<List<CategoriaPoco>>(lista);
+
             return listaPoco;
         }
 
         public CategoriaPoco Atualizar(CategoriaPoco poco)
         {
-            categoria atuaCat = this.repositorio.Read(reg => reg.catid == poco.Categoriaid);
-            atuaCat.descricao = poco.Descricao;
-            atuaCat.datainsert = poco.DataInclusao;
-            this.repositorio.Edit(atuaCat);
-
-            return this.Obter(atuaCat.catid);
-        }
+            categoria cat = this.mapa.GetMapper.Map<categoria>(poco);
+            categoria alterada = this.repositorio.Edit(cat);
+            CategoriaPoco novoPoco = this.mapa.GetMapper.Map<CategoriaPoco>(alterada);
+            return novoPoco;
+                    }
 
         public CategoriaPoco Excluir(int id)
         {
-            categoria excCat = this.repositorio.Read(reg => reg.catid == id);
-            this.repositorio.Delete(excCat);
-            return this.Obter(id);
+            categoria cat = this.repositorio.Read(reg => reg.catid == id);
+            CategoriaPoco poco = this.mapa.GetMapper.Map<CategoriaPoco>(cat);
+            this.repositorio.Delete(cat);
+            return poco;
         }
 
         public CategoriaPoco Incluir(CategoriaPoco poco)
         {
-            categoria novoCat = new categoria();
-            novoCat.descricao = poco.Descricao;
-            novoCat.datainsert = poco.DataInclusao;
-
-            this.repositorio.Add(novoCat);
-
-            return this.Obter(novoCat.catid);
+            categoria cat = this.mapa.GetMapper.Map<categoria>(poco);
+            categoria nova = this.repositorio.Add(cat);
+            CategoriaPoco novoPoco = this.mapa.GetMapper.Map<CategoriaPoco>(nova);
+            return novoPoco;
         }
     }
 }

@@ -37,6 +37,27 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:AtacadoRestApi.Controllers.CategoriaController.Post(Atacado.POCO.Model.CategoriaPoco)">
+            <summary>
+            Incluir novo registro.
+            </summary>
+            <param name="poco">Objeto a ser incluso.</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.CategoriaController.Put(Atacado.POCO.Model.CategoriaPoco)">
+            <summary>
+            Atualizar um registro.
+            </summary>
+            <param name="poco">Objeto a ser atualizado.</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.CategoriaController.Delete(System.Int32)">
+            <summary>
+            Excluir um registro.
+            </summary>
+            <param name="id">Chave primaria</param>
+            <returns></returns>
+        </member>
         <member name="M:AtacadoRestApi.Controllers.CategoriaController.Dispose(System.Boolean)">
             <summary>
             Dispose do serviço.
@@ -132,6 +153,56 @@
             </summary>
             <param name="id">Chave primaria do registro</param>
             <returns></returns>
+        </member>
+        <member name="T:AtacadoRestApi.Controllers.SubcategoriaController">
+            <summary>
+            Serviços de categoria utilizando disegn patterns.
+            </summary>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.SubcategoriaController.#ctor">
+            <summary>
+            Construtor da classe.
+            </summary>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.SubcategoriaController.Get(System.Int32)">
+            <summary>
+            Obter registro por chave primaria.
+            </summary>
+            <param name="id">Chave primaria</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.SubcategoriaController.Get">
+            <summary>
+            Obter todos os registros.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.SubcategoriaController.Post(Atacado.POCO.Model.SubcategoriaPoco)">
+            <summary>
+            Incluir novo registro.
+            </summary>
+            <param name="poco">Objeto a ser incluso.</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.SubcategoriaController.Put(Atacado.POCO.Model.SubcategoriaPoco)">
+            <summary>
+            Atualizar um registro.
+            </summary>
+            <param name="poco">Objeto a ser atualizado.</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.SubcategoriaController.Delete(System.Int32)">
+            <summary>
+            Excluir um registro.
+            </summary>
+            <param name="id">Chave primaria</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.SubcategoriaController.Dispose(System.Boolean)">
+            <summary>
+            Dispose do serviço.
+            </summary>
+            <param name="disposing"></param>
         </member>
         <member name="T:AtacadoRestApi.Controllers.UFController">
             <summary>

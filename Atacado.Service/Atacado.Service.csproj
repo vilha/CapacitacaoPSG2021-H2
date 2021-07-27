@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -53,12 +56,17 @@
   <ItemGroup>
     <Compile Include="Ancestor\IService.cs" />
     <Compile Include="Estoque\CategoriaService.cs" />
+    <Compile Include="Estoque\SubcategoriaService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atacado.DAL\Atacado.DAL.csproj">
       <Project>{4fbaa4ac-f7a3-4205-9a0f-9154d1759d66}</Project>
       <Name>Atacado.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Atacado.Mapping\Atacado.Mapping.csproj">
+      <Project>{3a37f1fe-0306-448b-abbc-97d1580976a6}</Project>
+      <Name>Atacado.Mapping</Name>
     </ProjectReference>
     <ProjectReference Include="..\Atacado.POCO\Atacado.POCO.csproj">
       <Project>{1b92eb19-0029-4752-a1dd-43936b4f2905}</Project>
