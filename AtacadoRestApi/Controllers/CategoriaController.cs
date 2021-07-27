@@ -49,6 +49,27 @@ namespace AtacadoRestApi.Controllers
             return this.servico.ObterTodos().ToList();
         }
 
+        public 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         /// <summary>
         /// Dispose do serviço.
         /// </summary>

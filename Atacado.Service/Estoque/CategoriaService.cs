@@ -34,7 +34,7 @@ namespace Atacado.Service.Estoque
 
         public IEnumerable<CategoriaPoco> ObterTodos()
         {
-            List<CategoriaPoco> listaPoco = this.repositorio.Browse()
+            List<CategoriaPoco> listaPoco = this.repositorio.Browsable()
                 .Select(cat => new CategoriaPoco() 
                 {
                     Categoriaid = cat.catid,
@@ -45,31 +45,32 @@ namespace Atacado.Service.Estoque
             return listaPoco;
         }
 
-
-
-
-
-
-
-
-
         public CategoriaPoco Atualizar(CategoriaPoco poco)
         {
-            throw new NotImplementedException();
+            categoria atuaCat = this.repositorio.Read(reg => reg.catid == poco.Categoriaid);
+            atuaCat.descricao = poco.Descricao;
+            atuaCat.datainsert = poco.DataInclusao;
+            this.repositorio.Edit(atuaCat);
+
+            return this.Obter(atuaCat.catid);
         }
 
         public CategoriaPoco Excluir(int id)
         {
-            throw new NotImplementedException();
+            categoria excCat = this.repositorio.Read(reg => reg.catid == id);
+            this.repositorio.Delete(excCat);
+            return this.Obter(id);
         }
 
         public CategoriaPoco Incluir(CategoriaPoco poco)
         {
-            throw new NotImplementedException();
+            categoria novoCat = new categoria();
+            novoCat.descricao = poco.Descricao;
+            novoCat.datainsert = poco.DataInclusao;
+
+            this.repositorio.Add(novoCat);
+
+            return this.Obter(novoCat.catid);
         }
-
-        
-
-        
     }
 }

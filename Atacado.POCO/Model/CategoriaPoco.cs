@@ -12,6 +12,6 @@ namespace Atacado.POCO.Model
 
         public string Descricao { get; set; }
 
-        public DateTime ?DataInclusao { get; set; }
+        public DateTime DataInclusao { get; set; }
     }
 }

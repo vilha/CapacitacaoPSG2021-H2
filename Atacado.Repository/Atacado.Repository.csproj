@@ -54,6 +54,9 @@
     <Compile Include="Ancestor\GenericRepository.cs" />
     <Compile Include="Ancestor\IRepository.cs" />
     <Compile Include="Estoque\CategoriaRepository.cs" />
+    <Compile Include="Estoque\MunicipioRepository.cs" />
+    <Compile Include="Estoque\RegiaoRepository.cs" />
+    <Compile Include="Estoque\UFRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
