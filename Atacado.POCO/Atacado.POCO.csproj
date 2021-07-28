@@ -42,7 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\CategoriaPoco.cs" />
+    <Compile Include="Model\MesoregiaoPoco.cs" />
+    <Compile Include="Model\MicroregiaoPoco.cs" />
     <Compile Include="Model\MunicipioPoco.cs" />
+    <Compile Include="Model\ProdutoPoco.cs" />
     <Compile Include="Model\SubcategoriaPoco.cs" />
     <Compile Include="Model\UFPoco.cs" />
     <Compile Include="Model\RegiaoPoco.cs" />

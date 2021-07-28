@@ -109,6 +109,56 @@
             <param name="id">Chave primaria do registro</param>
             <returns></returns>
         </member>
+        <member name="T:AtacadoRestApi.Controllers.ProdutoController">
+            <summary>
+            Serviços de categoria utilizando disegn patterns.
+            </summary>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.ProdutoController.#ctor">
+            <summary>
+            Construtor da classe.
+            </summary>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.ProdutoController.Get(System.Int32)">
+            <summary>
+            Obter registro por chave primaria.
+            </summary>
+            <param name="id">Chave primaria</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.ProdutoController.Get">
+            <summary>
+            Obter todos os registros.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.ProdutoController.Post(Atacado.POCO.Model.ProdutoPoco)">
+            <summary>
+            Incluir novo registro.
+            </summary>
+            <param name="poco">Objeto a ser incluso.</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.ProdutoController.Put(Atacado.POCO.Model.ProdutoPoco)">
+            <summary>
+            Atualizar um registro.
+            </summary>
+            <param name="poco">Objeto a ser atualizado.</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.ProdutoController.Delete(System.Int32)">
+            <summary>
+            Excluir um registro.
+            </summary>
+            <param name="id">Chave primaria</param>
+            <returns></returns>
+        </member>
+        <member name="M:AtacadoRestApi.Controllers.ProdutoController.Dispose(System.Boolean)">
+            <summary>
+            Dispose do serviço.
+            </summary>
+            <param name="disposing"></param>
+        </member>
         <member name="T:AtacadoRestApi.Controllers.RegiaoController">
             <summary>
             Serviços para a tabela região

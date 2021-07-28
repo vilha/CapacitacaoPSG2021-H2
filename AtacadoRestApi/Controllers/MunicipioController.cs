@@ -1,5 +1,5 @@
-﻿using Atacado.DAL.Model;
-using Atacado.POCO.Model;
+﻿using Atacado.POCO.Model;
+using Atacado.Service.Estoque;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +11,86 @@ using System.Web.Http.Description;
 namespace AtacadoRestApi.Controllers
 {
     /// <summary>
-    /// Serviços para a tabela municipios
+    /// Serviços de Municipio utilizando disegn patterns.
     /// </summary>
-    [RoutePrefix("AtacadoRestApi")]
+    [RoutePrefix("Municipio")]
     public class MunicipioController : BaseController
     {
+        private MunicipioService servico;
+
+        /// <summary>
+        /// Construtor da classe.
+        /// </summary>
+        public MunicipioController() : base()
+        {
+            this.servico = new MunicipioService(this.contexto);
+        }
+
+        /// <summary>
+        /// Obter registro por chave primaria.
+        /// </summary>
+        /// <param name="id">Chave primaria</param>
+        /// <returns></returns>
+        [ResponseType(typeof(MunicipioPoco))]
+        [HttpGet]
+        public MunicipioPoco Get([FromUri] int id)
+        {
+            return this.servico.Obter(id);
+        }
+
+        /// <summary>
+        /// Obter todos os registros.
+        /// </summary>
+        /// <returns></returns>
+        [ResponseType(typeof(List<MunicipioPoco>))]
+        [HttpGet]
+        public List<MunicipioPoco> Get()
+        {
+            return this.servico.ObterTodos().ToList();
+        }
+
+        /// <summary>
+        /// Incluir novo registro.
+        /// </summary>
+        /// <param name="poco">Objeto a ser incluso.</param>
+        /// <returns></returns>
+        public MunicipioPoco Post([FromBody] MunicipioPoco poco)
+        {
+            return this.servico.Incluir(poco);
+        }
+
+        /// <summary>
+        /// Atualizar um registro.
+        /// </summary>
+        /// <param name="poco">Objeto a ser atualizado.</param>
+        /// <returns></returns>
+        public MunicipioPoco Put([FromBody] MunicipioPoco poco)
+        {
+            return this.servico.Atualizar(poco);
+        }
+
+        /// <summary>
+        /// Excluir um registro.
+        /// </summary>
+        /// <param name="id">Chave primaria</param>
+        /// <returns></returns>
+        public MunicipioPoco Delete([FromUri] int id)
+        {
+            return this.servico.Excluir(id);
+        }
+
+        /// <summary>
+        /// Dispose do serviço.
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected override void Dispose(bool disposing)
+        {
+            this.servico = null;
+            base.Dispose(disposing);
+        }
+
+
+        /*
         /// <summary>
         /// Chamado do controlador base
         /// </summary>
@@ -144,5 +219,6 @@ namespace AtacadoRestApi.Controllers
             this.contexto.SaveChanges();
             return this.Get(id);
         }
+        */
     }
 }

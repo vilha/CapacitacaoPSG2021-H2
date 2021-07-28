@@ -2,8 +2,10 @@
 
 namespace Atacado.POCO.Model
 {
-    public class SubcategoriaPoco
+    public class ProdutoPoco
     {
+        public int ProdutoID { get; set; }
+
         public int SubcategoriaID { get; set; }
 
         public int CategoriaID { get; set; }

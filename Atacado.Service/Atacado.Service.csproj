@@ -56,7 +56,13 @@
   <ItemGroup>
     <Compile Include="Ancestor\IService.cs" />
     <Compile Include="Estoque\CategoriaService.cs" />
+    <Compile Include="Estoque\MesoregiaoService.cs" />
+    <Compile Include="Estoque\MicroregiaoService.cs" />
+    <Compile Include="Estoque\RegiaoService.cs" />
+    <Compile Include="Estoque\MunicipioService.cs" />
+    <Compile Include="Estoque\ProdutoService.cs" />
     <Compile Include="Estoque\SubcategoriaService.cs" />
+    <Compile Include="Estoque\UFService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

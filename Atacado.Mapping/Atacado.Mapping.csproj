@@ -47,11 +47,14 @@
     <Compile Include="Ancestor\BaseMapping.cs" />
     <Compile Include="Ancestor\IMapping.cs" />
     <Compile Include="Estoque\CategoriaMap.cs" />
+    <Compile Include="Estoque\MesoregiaoMap.cs" />
+    <Compile Include="Estoque\MicroregiaoMap.cs" />
+    <Compile Include="Estoque\MunicipioMap.cs" />
+    <Compile Include="Estoque\ProdutoMap.cs" />
+    <Compile Include="Estoque\RegiaoMap.cs" />
     <Compile Include="Estoque\SubcategoriaMap.cs" />
+    <Compile Include="Estoque\UFMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atacado.DAL\Atacado.DAL.csproj">
@@ -62,6 +65,9 @@
       <Project>{1b92eb19-0029-4752-a1dd-43936b4f2905}</Project>
       <Name>Atacado.POCO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

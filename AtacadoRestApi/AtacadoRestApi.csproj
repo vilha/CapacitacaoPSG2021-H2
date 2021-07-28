@@ -102,7 +102,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
+    <Compile Include="Controllers\MesoregiaoController.cs" />
+    <Compile Include="Controllers\MicroregiaoController.cs" />
     <Compile Include="Controllers\MunicipioController.cs" />
+    <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\RegiaoController.cs" />
     <Compile Include="Controllers\SubcategoriaController.cs" />
     <Compile Include="Controllers\UFController.cs" />

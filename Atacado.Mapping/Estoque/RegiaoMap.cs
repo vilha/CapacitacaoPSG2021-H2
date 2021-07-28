@@ -10,18 +10,16 @@ using System.Threading.Tasks;
 
 namespace Atacado.Mapping.Estoque
 {
-    public class CategoriaMap : BaseMapping
+    public class RegiaoMap : BaseMapping
     {
-        public CategoriaMap()
+        public RegiaoMap()
         {
             var configuration = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<categoria, CategoriaPoco>()
-                    .ForMember(dst => dst.CategoriaID, map => map.MapFrom(src => src.catid))
+                cfg.CreateMap<Regiao, RegiaoPoco>()
                     .ForMember(dst => dst.DataInclusao, map => map.MapFrom(src => src.datainsert));
 
-                cfg.CreateMap<CategoriaPoco, categoria>()
-                    .ForMember(dst => dst.catid, map => map.MapFrom(src => src.CategoriaID))
+                cfg.CreateMap<RegiaoPoco, Regiao>()
                     .ForMember(dst => dst.datainsert, map => map.MapFrom(src => (src.DataInclusao.HasValue ? src.DataInclusao.Value : DateTime.Now)));
             });
 

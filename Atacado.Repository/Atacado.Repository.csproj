@@ -54,7 +54,10 @@
     <Compile Include="Ancestor\GenericRepository.cs" />
     <Compile Include="Ancestor\IRepository.cs" />
     <Compile Include="Estoque\CategoriaRepository.cs" />
+    <Compile Include="Estoque\MesoregiaoRepository.cs" />
+    <Compile Include="Estoque\MicroregiaoRepository.cs" />
     <Compile Include="Estoque\MunicipioRepository.cs" />
+    <Compile Include="Estoque\ProdutoRepository.cs" />
     <Compile Include="Estoque\RegiaoRepository.cs" />
     <Compile Include="Estoque\SubcategoriaRepository.cs" />
     <Compile Include="Estoque\UFRepository.cs" />
