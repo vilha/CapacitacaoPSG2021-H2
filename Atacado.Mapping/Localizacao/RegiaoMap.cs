@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Atacado.Mapping.Estoque
+namespace Atacado.Mapping.Localizacao
 {
     public class RegiaoMap : BaseMapping
     {

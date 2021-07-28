@@ -47,13 +47,13 @@
     <Compile Include="Ancestor\BaseMapping.cs" />
     <Compile Include="Ancestor\IMapping.cs" />
     <Compile Include="Estoque\CategoriaMap.cs" />
-    <Compile Include="Estoque\MesoregiaoMap.cs" />
-    <Compile Include="Estoque\MicroregiaoMap.cs" />
-    <Compile Include="Estoque\MunicipioMap.cs" />
+    <Compile Include="Localizacao\MesoregiaoMap.cs" />
+    <Compile Include="Localizacao\MicroregiaoMap.cs" />
+    <Compile Include="Localizacao\MunicipioMap.cs" />
     <Compile Include="Estoque\ProdutoMap.cs" />
-    <Compile Include="Estoque\RegiaoMap.cs" />
+    <Compile Include="Localizacao\RegiaoMap.cs" />
     <Compile Include="Estoque\SubcategoriaMap.cs" />
-    <Compile Include="Estoque\UFMap.cs" />
+    <Compile Include="Localizacao\UFMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

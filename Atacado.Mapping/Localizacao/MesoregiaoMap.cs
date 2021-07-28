@@ -8,18 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Atacado.Mapping.Estoque
+namespace Atacado.Mapping.Localizacao
 {
-    public class MicroregiaoMap : BaseMapping
+    public class MesoregiaoMap : BaseMapping
     {
-        public MicroregiaoMap()
+        public MesoregiaoMap()
         {
             var configuration = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Microregiao, MicroregiaoPoco>()
+                cfg.CreateMap<Mesoregiao, MesoregiaoPoco>()
                     .ForMember(dst => dst.DataInclusao, map => map.MapFrom(src => src.datainsert));
 
-                cfg.CreateMap<MicroregiaoPoco, Microregiao>()
+                cfg.CreateMap<MesoregiaoPoco, Mesoregiao>()
                     .ForMember(dst => dst.datainsert, map => map.MapFrom(src => (src.DataInclusao.HasValue ? src.DataInclusao.Value : DateTime.Now)));
             });
 

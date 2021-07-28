@@ -13,7 +13,7 @@ namespace AtacadoRestApi.Controllers
     /// <summary>
     /// Serviços de categoria utilizando disegn patterns.
     /// </summary>
-    [RoutePrefix("produto")]
+    [RoutePrefix("atacado/estoque/produtos")]
     public class ProdutoController : BaseController
     {
         private ProdutoService servico;
@@ -29,31 +29,24 @@ namespace AtacadoRestApi.Controllers
         /// <summary>
         /// Obter registro por chave primaria.
         /// </summary>
-        /// <param name="id">Chave primaria</param>
+        /// <param name="id">Chave primaria.</param>
         /// <returns></returns>
-        [ResponseType(typeof(CategoriaPoco))]
         [HttpGet]
+        [Route("{id:int}")]
+        [ResponseType(typeof(CategoriaPoco))]
         public ProdutoPoco Get([FromUri] int id)
         {
             return this.servico.Obter(id);
         }
 
         /// <summary>
-        /// Obter todos os registros.
-        /// </summary>
-        /// <returns></returns>
-        [ResponseType(typeof(List<CategoriaPoco>))]
-        [HttpGet]
-        public List<ProdutoPoco> Get()
-        {
-            return this.servico.ObterTodos().ToList();
-        }
-
-        /// <summary>
         /// Incluir novo registro.
         /// </summary>
-        /// <param name="poco">Objeto a ser incluso.</param>
+        /// <param name="poco">Objeto a ser incluido.</param>
         /// <returns></returns>
+        [HttpPost]
+        [Route("")]
+        [ResponseType(typeof(CategoriaPoco))]
         public ProdutoPoco Post([FromBody] ProdutoPoco poco)
         {
             return this.servico.Incluir(poco);
@@ -64,6 +57,9 @@ namespace AtacadoRestApi.Controllers
         /// </summary>
         /// <param name="poco">Objeto a ser atualizado.</param>
         /// <returns></returns>
+        [HttpPut]
+        [Route("")]
+        [ResponseType(typeof(CategoriaPoco))]
         public ProdutoPoco Put([FromBody] ProdutoPoco poco)
         {
             return this.servico.Atualizar(poco);
@@ -72,8 +68,11 @@ namespace AtacadoRestApi.Controllers
         /// <summary>
         /// Excluir um registro.
         /// </summary>
-        /// <param name="id">Chave primaria</param>
+        /// <param name="id">Chave primaria.</param>
         /// <returns></returns>
+        [HttpDelete]
+        [Route("{id:int}")]
+        [ResponseType(typeof(CategoriaPoco))]
         public ProdutoPoco Delete([FromUri] int id)
         {
             return this.servico.Excluir(id);

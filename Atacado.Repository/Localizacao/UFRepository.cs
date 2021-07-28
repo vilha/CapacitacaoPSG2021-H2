@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 
-namespace Atacado.Repository.Estoque
+namespace Atacado.Repository.Localizacao
 {
     public class UFRepository : GenericRepository<DbContext, UnidadesFederacao>
     {

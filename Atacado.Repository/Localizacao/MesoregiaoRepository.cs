@@ -7,11 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 
-namespace Atacado.Repository.Estoque
+namespace Atacado.Repository.Localizacao
 {
-    public class RegiaoRepository : GenericRepository<DbContext, Regiao>
+    public class MesoregiaoRepository : GenericRepository<DbContext, Mesoregiao>
     {
-        public RegiaoRepository(DbContext contexto) : base(contexto)
+        public MesoregiaoRepository(DbContext contexto) : base(contexto)
         { }
     }
 }

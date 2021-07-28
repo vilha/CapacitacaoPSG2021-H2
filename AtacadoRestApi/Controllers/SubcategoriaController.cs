@@ -13,7 +13,7 @@ namespace AtacadoRestApi.Controllers
     /// <summary>
     /// Serviços de categoria utilizando disegn patterns.
     /// </summary>
-    [RoutePrefix("subcategoria")]
+    [RoutePrefix("atacado/estoque/subcategoria")]
     public class SubcategoriaController : BaseController
     {
         private SubcategoriaService servico;
@@ -27,26 +27,44 @@ namespace AtacadoRestApi.Controllers
         }
 
         /// <summary>
+        /// Obter todos os registros.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("")]
+        [ResponseType(typeof(List<SubcategoriaPoco>))]
+        public List<SubcategoriaPoco> Get()
+        {
+            return this.servico.ObterTodos().ToList();
+        }
+
+        /// <summary>
         /// Obter registro por chave primaria.
         /// </summary>
         /// <param name="id">Chave primaria</param>
         /// <returns></returns>
-        [ResponseType(typeof(SubcategoriaPoco))]
         [HttpGet]
+        [Route("{id:int}")]
+        [ResponseType(typeof(SubcategoriaPoco))]
         public SubcategoriaPoco Get([FromUri] int id)
         {
             return this.servico.Obter(id);
         }
 
         /// <summary>
-        /// Obter todos os registros.
+        /// Obter produtos por id da subcategoria.
         /// </summary>
+        /// <param name="subcatid">Chave primaria da subcategoria.</param>
         /// <returns></returns>
-        [ResponseType(typeof(List<SubcategoriaPoco>))]
         [HttpGet]
-        public List<SubcategoriaPoco> Get()
+        [Route("{subcatid:int}/produtos")]
+        [ResponseType(typeof(List<ProdutoPoco>))]
+        public List<ProdutoPoco> GetProdutosPorID([FromUri] int subcatid)
         {
-            return this.servico.ObterTodos().ToList();
+            ProdutoService srv = new ProdutoService(this.contexto);
+            List<ProdutoPoco> produtoPoco = srv.ObterTodos()
+                .Where(prod => prod.SubcategoriaID == subcatid).ToList();
+            return produtoPoco;
         }
 
         /// <summary>
@@ -54,6 +72,9 @@ namespace AtacadoRestApi.Controllers
         /// </summary>
         /// <param name="poco">Objeto a ser incluso.</param>
         /// <returns></returns>
+        [HttpPost]
+        [Route("")]
+        [ResponseType(typeof(SubcategoriaPoco))]
         public SubcategoriaPoco Post([FromBody] SubcategoriaPoco poco)
         {
             return this.servico.Incluir(poco);
@@ -64,6 +85,9 @@ namespace AtacadoRestApi.Controllers
         /// </summary>
         /// <param name="poco">Objeto a ser atualizado.</param>
         /// <returns></returns>
+        [HttpPut]
+        [Route("")]
+        [ResponseType(typeof(SubcategoriaPoco))]
         public SubcategoriaPoco Put([FromBody] SubcategoriaPoco poco)
         {
             return this.servico.Atualizar(poco);
@@ -74,6 +98,9 @@ namespace AtacadoRestApi.Controllers
         /// </summary>
         /// <param name="id">Chave primaria</param>
         /// <returns></returns>
+        [HttpDelete]
+        [Route("{id:int}")]
+        [ResponseType(typeof(SubcategoriaPoco))]
         public SubcategoriaPoco Delete([FromUri] int id)
         {
             return this.servico.Excluir(id);

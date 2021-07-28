@@ -1,6 +1,6 @@
 ﻿using Atacado.POCO.Model;
 using Atacado.DAL.Model;
-using Atacado.Repository.Estoque;
+using Atacado.Repository.Localizacao;
 using Atacado.Service.Ancestor;
 using System;
 using System.Collections.Generic;
@@ -8,9 +8,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Atacado.Mapping.Estoque;
+using Atacado.Mapping.Localizacao;
 
-namespace Atacado.Service.Estoque
+namespace Atacado.Service.Localizacao
 {
     public class MicroregiaoService : IService<MicroregiaoPoco>
     {
