@@ -33,9 +33,17 @@ namespace AtacadoRestApi.Controllers
         [HttpGet]
         [Route("")]
         [ResponseType(typeof(List<UFPoco>))]
-        public List<UFPoco> Get()
+        public HttpResponseMessage Get()
         {
-            return this.servico.ObterTodos().ToList();
+            try
+            {
+                List<UFPoco> poco = this.servico.ObterTodos().ToList();
+                return Request.CreateResponse<List<UFPoco>>(HttpStatusCode.OK, poco);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>
@@ -46,9 +54,21 @@ namespace AtacadoRestApi.Controllers
         [HttpGet]
         [Route("{id:int}")]
         [ResponseType(typeof(UFPoco))]
-        public UFPoco Get([FromUri] int id)
+        public HttpResponseMessage Get([FromUri] int id)
         {
-            return this.servico.Obter(id);
+            if (id == 0)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "ID não pode ser zero.");
+            }
+            try
+            {
+                UFPoco poco = this.servico.Obter(id);
+                return Request.CreateResponse<UFPoco>(HttpStatusCode.OK, poco);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>
@@ -59,12 +79,28 @@ namespace AtacadoRestApi.Controllers
         [HttpGet]
         [Route("{siglauf}/municipios")]
         [ResponseType(typeof(List<MunicipioPoco>))]
-        public List<MunicipioPoco> GetMunicipiosPorSigla([FromUri] string siglauf)
+        public HttpResponseMessage GetMunicipiosPorSigla([FromUri] string siglauf)
         {
-            MunicipioService srv = new MunicipioService(this.contexto);
-            List<MunicipioPoco> municipioPoco = srv.ObterTodos()
-                .Where(mun => mun.SiglaUF == siglauf).ToList();
-            return municipioPoco;
+            if (string.IsNullOrEmpty(siglauf))
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "SiglaUF deve ser informada.");
+            }
+            if (siglauf.Length != 2)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "SiglaUF deve conter duas letras.");
+            }
+            try
+            {
+                string sigla = siglauf.ToUpper();
+                MunicipioService srv = new MunicipioService(this.contexto);
+                List<MunicipioPoco> lista = srv.ObterTodos()
+                    .Where(mun => mun.SiglaUF == sigla).ToList();
+                return Request.CreateResponse<List<MunicipioPoco>>(HttpStatusCode.OK, lista);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>
@@ -73,14 +109,25 @@ namespace AtacadoRestApi.Controllers
         /// <param name="ufid">Chave primaria do estado.</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("{ufid:int}/municipios")]
+        [Route("{ufid:int}/municipio")]
         [ResponseType(typeof(List<MunicipioPoco>))]
-        public List<MunicipioPoco> GetMunicipiosPorID([FromUri] int ufid)
+        public HttpResponseMessage GetMunicipiosPorID([FromUri] int ufid)
         {
-            MunicipioService srv = new MunicipioService(this.contexto);
-            List<MunicipioPoco> municipioPoco = srv.ObterTodos()
-                .Where(mun => mun.UFID == ufid).ToList();
-            return municipioPoco;
+            if (ufid == 0)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "ID não pode ser zero.");
+            }
+            try
+            {
+                MunicipioService srv = new MunicipioService(this.contexto);
+                List<MunicipioPoco> lista = srv.ObterTodos()
+                    .Where(mun => mun.UFID == ufid).ToList();
+                return Request.CreateResponse<List<MunicipioPoco>>(HttpStatusCode.OK, lista);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>
@@ -91,12 +138,23 @@ namespace AtacadoRestApi.Controllers
         [HttpGet]
         [Route("{ufid:int}/mesoregioes")]
         [ResponseType(typeof(UFPoco))]
-        public List<MesoregiaoPoco> GetMesoregioesPorSigla([FromUri] int ufid)
+        public HttpResponseMessage GetMesoregioesPorID([FromUri] int ufid)
         {
-            MesoregiaoService srv = new MesoregiaoService(this.contexto);
-            List<MesoregiaoPoco> mesoregiaoPoco = srv.ObterTodos()
-                .Where(mes => mes.UFID == ufid).ToList();
-            return mesoregiaoPoco;
+            if (ufid == 0)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "ID não pode ser zero.");
+            }
+            try
+            {
+                MesoregiaoService srv = new MesoregiaoService(this.contexto);
+                List<MesoregiaoPoco> lista = srv.ObterTodos()
+                    .Where(mes => mes.UFID == ufid).ToList();
+                return Request.CreateResponse<List<MesoregiaoPoco>> (HttpStatusCode.OK, lista);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>
@@ -107,9 +165,17 @@ namespace AtacadoRestApi.Controllers
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(UFPoco))]
-        public UFPoco Post([FromBody] UFPoco poco)
+        public HttpResponseMessage Post([FromBody] UFPoco poco)
         {
-            return this.servico.Incluir(poco);
+            try
+            {
+                this.servico.Incluir(poco);
+                return Request.CreateResponse<UFPoco>(HttpStatusCode.OK, poco);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>
@@ -120,9 +186,17 @@ namespace AtacadoRestApi.Controllers
         [HttpPut]
         [Route("")]
         [ResponseType(typeof(UFPoco))]
-        public UFPoco Put([FromBody] UFPoco poco)
+        public HttpResponseMessage Put([FromBody] UFPoco poco)
         {
-            return this.servico.Atualizar(poco);
+            try
+            {
+                this.servico.Atualizar(poco);
+                return Request.CreateResponse<UFPoco>(HttpStatusCode.OK, poco);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>
@@ -133,9 +207,21 @@ namespace AtacadoRestApi.Controllers
         [HttpDelete]
         [Route("{id:int}")]
         [ResponseType(typeof(UFPoco))]
-        public UFPoco Delete([FromUri] int id)
+        public HttpResponseMessage Delete([FromUri] int id)
         {
-            return this.servico.Excluir(id);
+            if (id == 0)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "ID não pode ser zero.");
+            }
+            try
+            {
+                UFPoco poco = this.servico.Excluir(id);
+                return Request.CreateResponse<UFPoco>(HttpStatusCode.OK, poco);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>

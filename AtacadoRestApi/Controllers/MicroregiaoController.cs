@@ -63,7 +63,7 @@ namespace AtacadoRestApi.Controllers
         {
             MunicipioService srv = new MunicipioService(this.contexto);
             List<MunicipioPoco> municipioPoco = srv.ObterTodos()
-                .Where(mic => mic.MesoregiaoID == micid).ToList();
+                .Where(mic => mic.MicroregiaoID == micid).ToList();
             return municipioPoco;
         }
 

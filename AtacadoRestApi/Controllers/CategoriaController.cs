@@ -33,9 +33,17 @@ namespace AtacadoRestApi.Controllers
         [HttpGet]
         [Route("")]
         [ResponseType(typeof(List<CategoriaPoco>))]
-        public List<CategoriaPoco> Get()
+        public HttpResponseMessage Get()
         {
-            return this.servico.ObterTodos().ToList();
+            try
+            {
+                List<CategoriaPoco> lista = this.servico.ObterTodos().ToList();
+                return Request.CreateResponse<List<CategoriaPoco>>(HttpStatusCode.OK, lista);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>

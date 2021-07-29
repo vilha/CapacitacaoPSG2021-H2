@@ -431,7 +431,7 @@
             <param name="ufid">Chave primaria do estado.</param>
             <returns></returns>
         </member>
-        <member name="M:AtacadoRestApi.Controllers.UFController.GetMesoregioesPorSigla(System.Int32)">
+        <member name="M:AtacadoRestApi.Controllers.UFController.GetMesoregioesPorID(System.Int32)">
             <summary>
             Obter mesoregioes por id do estado.
             </summary>
