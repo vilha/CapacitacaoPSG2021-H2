@@ -34,9 +34,21 @@ namespace AtacadoRestApi.Controllers
         [HttpGet]
         [Route("{id:int}")]
         [ResponseType(typeof(MunicipioPoco))]
-        public MunicipioPoco Get([FromUri] int id)
+        public HttpResponseMessage Get([FromUri] int id)
         {
-            return this.servico.Obter(id);
+            if (id == 0)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "ID não pode ser zero.");
+            }
+            try
+            {
+                MunicipioPoco poco = this.servico.Obter(id);
+                return Request.CreateResponse<MunicipioPoco>(HttpStatusCode.OK, poco);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>
@@ -47,9 +59,17 @@ namespace AtacadoRestApi.Controllers
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(MunicipioPoco))]
-        public MunicipioPoco Post([FromBody] MunicipioPoco poco)
+        public HttpResponseMessage Post([FromBody] MunicipioPoco poco)
         {
-            return this.servico.Incluir(poco);
+            try
+            {
+                this.servico.Incluir(poco);
+                return Request.CreateResponse<MunicipioPoco>(HttpStatusCode.OK, poco);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>
@@ -60,9 +80,17 @@ namespace AtacadoRestApi.Controllers
         [HttpPut]
         [Route("")]
         [ResponseType(typeof(MunicipioPoco))]
-        public MunicipioPoco Put([FromBody] MunicipioPoco poco)
+        public HttpResponseMessage Put([FromBody] MunicipioPoco poco)
         {
-            return this.servico.Atualizar(poco);
+            try
+            {
+                this.servico.Atualizar(poco);
+                return Request.CreateResponse<MunicipioPoco>(HttpStatusCode.OK, poco);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>
@@ -73,9 +101,21 @@ namespace AtacadoRestApi.Controllers
         [HttpDelete]
         [Route("{id:int}")]
         [ResponseType(typeof(MunicipioPoco))]
-        public MunicipioPoco Delete([FromUri] int id)
+        public HttpResponseMessage Delete([FromUri] int id)
         {
-            return this.servico.Excluir(id);
+            if (id == 0)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "ID não pode ser zero.");
+            }
+            try
+            {
+                MunicipioPoco poco = this.servico.Excluir(id);
+                return Request.CreateResponse<MunicipioPoco>(HttpStatusCode.OK, poco);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>

@@ -54,9 +54,21 @@ namespace AtacadoRestApi.Controllers
         [HttpGet]
         [Route("{id:int}")]
         [ResponseType(typeof(CategoriaPoco))]
-        public CategoriaPoco Get([FromUri] int id)
+        public HttpResponseMessage Get([FromUri] int id)
         {
-            return this.servico.Obter(id);
+            if (id == 0)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "ID não pode ser zero.");
+            }
+            try
+            {
+                CategoriaPoco poco = this.servico.Obter(id);
+                return Request.CreateResponse<CategoriaPoco>(HttpStatusCode.OK, poco);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>
@@ -67,12 +79,23 @@ namespace AtacadoRestApi.Controllers
         [HttpGet]
         [Route("{catid:int}/subcategorias")]
         [ResponseType(typeof(List<SubcategoriaPoco>))]
-        public List<SubcategoriaPoco> GetSubcategoriaPorID([FromUri] int catid)
+        public HttpResponseMessage GetSubcategoriaPorID([FromUri] int catid)
         {
-            SubcategoriaService srv = new SubcategoriaService(this.contexto);
-            List<SubcategoriaPoco> subcategoriaPoco = srv.ObterTodos()
-                .Where(sub => sub.CategoriaID == catid).ToList();
-            return subcategoriaPoco;
+            if (catid == 0)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "ID não pode ser zero.");
+            }
+            try
+            {
+                SubcategoriaService srv = new SubcategoriaService(this.contexto);
+                List<SubcategoriaPoco> lista = srv.ObterTodos()
+                    .Where(sub => sub.CategoriaID == catid).ToList();
+                return Request.CreateResponse<List<SubcategoriaPoco>>(HttpStatusCode.OK, lista);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>
@@ -83,9 +106,17 @@ namespace AtacadoRestApi.Controllers
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(CategoriaPoco))]
-        public CategoriaPoco Post([FromBody] CategoriaPoco poco)
+        public HttpResponseMessage Post([FromBody] CategoriaPoco poco)
         {
-            return this.servico.Incluir(poco);
+            try
+            {
+                this.servico.Incluir(poco);
+                return Request.CreateResponse<CategoriaPoco>(HttpStatusCode.OK, poco);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>
@@ -96,9 +127,17 @@ namespace AtacadoRestApi.Controllers
         [HttpPut]
         [Route("")]
         [ResponseType(typeof(CategoriaPoco))]
-        public CategoriaPoco Put([FromBody] CategoriaPoco poco)
+        public HttpResponseMessage Put([FromBody] CategoriaPoco poco)
         {
-            return this.servico.Atualizar(poco);
+            try
+            {
+                this.servico.Atualizar(poco);
+                return Request.CreateResponse<CategoriaPoco>(HttpStatusCode.OK, poco);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>
@@ -109,9 +148,21 @@ namespace AtacadoRestApi.Controllers
         [HttpDelete]
         [Route("{id:int}")]
         [ResponseType(typeof(CategoriaPoco))]
-        public CategoriaPoco Delete([FromUri] int id)
+        public HttpResponseMessage Delete([FromUri] int id)
         {
-            return this.servico.Excluir(id);
+            if (id == 0)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "ID não pode ser zero.");
+            }
+            try
+            {
+                CategoriaPoco poco = this.servico.Excluir(id);
+                return Request.CreateResponse<CategoriaPoco>(HttpStatusCode.OK, poco);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
         }
 
         /// <summary>
