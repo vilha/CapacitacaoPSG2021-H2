@@ -12,11 +12,10 @@ using Atacado.Mapping.Estoque;
 
 namespace Atacado.Service.Estoque
 {
-    public class SubcategoriaService : IService<SubcategoriaPoco>
+    public class SubcategoriaService :
+        GenericService<DbContext, subcategoria, SubcategoriaPoco>,
+        IService<SubcategoriaPoco>
     {
-        private SubcategoriaRepository repositorio;
-
-        private SubcategoriaMap mapa;
         public SubcategoriaService(DbContext contexto)
         {
             this.repositorio = new SubcategoriaRepository(contexto);
@@ -61,5 +60,10 @@ namespace Atacado.Service.Estoque
             return novoPoco;
         }
 
+        public void Dispose()
+        {
+            this.repositorio = null;
+            this.mapa = null;
+        }
     }
 }

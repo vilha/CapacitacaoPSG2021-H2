@@ -12,12 +12,10 @@ using Atacado.Mapping.Localizacao;
 
 namespace Atacado.Service.Localizacao
 {
-    public class UFService : IService<UFPoco>
+    public class UFService :
+        GenericService<DbContext, UnidadesFederacao, UFPoco>,
+        IService<UFPoco>
     {
-        private UFRepository repositorio;
-
-        private UFMap mapa;
-
         public UFService(DbContext contexto)
         {
             this.repositorio = new UFRepository(contexto);
@@ -60,6 +58,12 @@ namespace Atacado.Service.Localizacao
             UnidadesFederacao nova = this.repositorio.Add(unifed);
             UFPoco novoPoco = this.mapa.GetMapper.Map<UFPoco>(nova);
             return novoPoco;
+        }
+
+        public void Dispose()
+        {
+            this.repositorio = null;
+            this.mapa = null;
         }
     }
 }

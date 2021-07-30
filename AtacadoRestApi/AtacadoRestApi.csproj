@@ -99,9 +99,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ancestor\GenericBaseController.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\Ancestor\BaseController.cs" />
     <Compile Include="Controllers\Estoque\CategoriaController.cs" />
     <Compile Include="Controllers\Lolizacao\MesoregiaoController.cs" />
     <Compile Include="Controllers\Lolizacao\MicroregiaoController.cs" />

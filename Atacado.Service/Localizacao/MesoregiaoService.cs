@@ -12,11 +12,10 @@ using Atacado.Mapping.Localizacao;
 
 namespace Atacado.Service.Localizacao
 {
-    public class MesoregiaoService : IService<MesoregiaoPoco>
+    public class MesoregiaoService :
+        GenericService<DbContext, Mesoregiao, MesoregiaoPoco>,
+        IService<MesoregiaoPoco>
     {
-        private MesoregiaoRepository repositorio;
-
-        private MesoregiaoMap mapa;
         public MesoregiaoService(DbContext contexto)
         {
             this.repositorio = new MesoregiaoRepository(contexto);
@@ -61,5 +60,10 @@ namespace Atacado.Service.Localizacao
             return novoPoco;
         }
 
+        public void Dispose()
+        {
+            this.repositorio = null;
+            this.mapa = null;
+        }
     }
 }

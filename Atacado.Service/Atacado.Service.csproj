@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ancestor\GenericService.cs" />
     <Compile Include="Ancestor\IService.cs" />
     <Compile Include="Estoque\CategoriaService.cs" />
     <Compile Include="Localizacao\MesoregiaoService.cs" />

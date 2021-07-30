@@ -12,12 +12,10 @@ using Atacado.Mapping.Estoque;
 
 namespace Atacado.Service.Estoque
 {
-    public class CategoriaService : IService<CategoriaPoco>
+    public class CategoriaService :
+        GenericService<DbContext, categoria, CategoriaPoco>,
+        IService<CategoriaPoco>
     {
-        private CategoriaRepository repositorio;
-
-        private CategoriaMap mapa;
-
         public CategoriaService(DbContext contexto)
         {
             this.repositorio = new CategoriaRepository(contexto);
@@ -45,7 +43,7 @@ namespace Atacado.Service.Estoque
             categoria alterada = this.repositorio.Edit(cat);
             CategoriaPoco novoPoco = this.mapa.GetMapper.Map<CategoriaPoco>(alterada);
             return novoPoco;
-                    }
+        }
 
         public CategoriaPoco Excluir(int id)
         {

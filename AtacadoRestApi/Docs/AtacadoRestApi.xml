@@ -65,12 +65,6 @@
             <param name="id">Chave primaria</param>
             <returns></returns>
         </member>
-        <member name="M:AtacadoRestApi.Controllers.CategoriaController.Dispose(System.Boolean)">
-            <summary>
-            Dispose do serviço.
-            </summary>
-            <param name="disposing"></param>
-        </member>
         <member name="T:AtacadoRestApi.Controllers.MesoregiaoController">
             <summary>
             Serviços de Mesoregiao utilizando disegn patterns.
@@ -129,12 +123,6 @@
             <param name="id">Chave primaria.</param>
             <returns></returns>
         </member>
-        <member name="M:AtacadoRestApi.Controllers.MesoregiaoController.Dispose(System.Boolean)">
-            <summary>
-            Dispose do serviço.
-            </summary>
-            <param name="disposing"></param>
-        </member>
         <member name="T:AtacadoRestApi.Controllers.MicroregiaoController">
             <summary>
             Serviços de Microregiao utilizando disegn patterns.
@@ -186,12 +174,6 @@
             <param name="id">Chave primaria.</param>
             <returns></returns>
         </member>
-        <member name="M:AtacadoRestApi.Controllers.MicroregiaoController.Dispose(System.Boolean)">
-            <summary>
-            Dispose do serviço.
-            </summary>
-            <param name="disposing"></param>
-        </member>
         <member name="T:AtacadoRestApi.Controllers.MunicipioController">
             <summary>
             Serviços de Municipio utilizando disegn patterns.
@@ -230,12 +212,6 @@
             <param name="id">Chave primaria.</param>
             <returns></returns>
         </member>
-        <member name="M:AtacadoRestApi.Controllers.MunicipioController.Dispose(System.Boolean)">
-            <summary>
-            Dispose do serviço.
-            </summary>
-            <param name="disposing"></param>
-        </member>
         <member name="T:AtacadoRestApi.Controllers.ProdutoController">
             <summary>
             Serviços de categoria utilizando disegn patterns.
@@ -273,12 +249,6 @@
             </summary>
             <param name="id">Chave primaria.</param>
             <returns></returns>
-        </member>
-        <member name="M:AtacadoRestApi.Controllers.ProdutoController.Dispose(System.Boolean)">
-            <summary>
-            Dispose do serviço.
-            </summary>
-            <param name="disposing"></param>
         </member>
         <member name="T:AtacadoRestApi.Controllers.RegiaoController">
             <summary>
@@ -331,12 +301,6 @@
             <param name="id">Chave primaria.</param>
             <returns></returns>
         </member>
-        <member name="M:AtacadoRestApi.Controllers.RegiaoController.Dispose(System.Boolean)">
-            <summary>
-            Dispose do serviço.
-            </summary>
-            <param name="disposing"></param>
-        </member>
         <member name="T:AtacadoRestApi.Controllers.SubcategoriaController">
             <summary>
             Serviços de categoria utilizando disegn patterns.
@@ -387,12 +351,6 @@
             </summary>
             <param name="id">Chave primaria</param>
             <returns></returns>
-        </member>
-        <member name="M:AtacadoRestApi.Controllers.SubcategoriaController.Dispose(System.Boolean)">
-            <summary>
-            Dispose do serviço.
-            </summary>
-            <param name="disposing"></param>
         </member>
         <member name="T:AtacadoRestApi.Controllers.UFController">
             <summary>
@@ -458,12 +416,6 @@
             </summary>
             <param name="id">Chave primaria.</param>
             <returns></returns>
-        </member>
-        <member name="M:AtacadoRestApi.Controllers.UFController.Dispose(System.Boolean)">
-            <summary>
-            Dispose do serviço.
-            </summary>
-            <param name="disposing"></param>
         </member>
     </members>
 </doc>

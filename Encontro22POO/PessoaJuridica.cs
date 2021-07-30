@@ -12,7 +12,7 @@ namespace Encontro22POO
 
         private string nomeFantazia;
 
-        private string[] endereco;
+        private string endereco;
 
         private string cnpj;
 
@@ -23,7 +23,7 @@ namespace Encontro22POO
         public string RazaoSocial { get => this.razaoSocial; set => this.razaoSocial = value; }
 
         public string NomeFantazia { get => this.nomeFantazia; set => this.nomeFantazia = value; }
-        public string[] Endereco { get => this.endereco; set => this.endereco = value; }
+        public string Endereco { get => this.endereco; set => this.endereco = value; }
         public string CNPJ { get => this.cnpj; set => this.cnpj = value; }
         public string InscEstadual { get => this.inscEstadual; set => this.inscEstadual = value; }
         public string InscMunicipal { get => this.inscMunicipal; set => this.inscMunicipal = value; }
@@ -35,7 +35,7 @@ namespace Encontro22POO
             int codigoCliente,
             string razaoSocial,
             string nomeFantazia,
-            string[] endereco,
+            string endereco,
             string cnpj,
             string inscEstadual,
             string inscMunicipal,
@@ -44,7 +44,7 @@ namespace Encontro22POO
         {
             this.razaoSocial = razaoSocial;
             this.nomeFantazia = nomeFantazia;
-            this.endereco[] = endereco;
+            this.endereco = endereco;
             this.cnpj = cnpj;
             this.inscEstadual = inscEstadual;
             this.inscMunicipal = inscMunicipal;

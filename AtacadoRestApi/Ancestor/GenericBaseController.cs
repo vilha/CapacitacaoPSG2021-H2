@@ -1,18 +1,22 @@
 ﻿using Atacado.DAL.Model;
+using Atacado.Service.Ancestor;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
-namespace AtacadoRestApi.Controllers
+namespace AtacadoRestApi.Ancestor
 {
-    
-    public abstract class BaseController : ApiController
+    public class GenericBaseController<T> : ApiController
+        where T : class
     {
-        protected AtacadoModel contexto;
-        public BaseController()
+        protected DbContext contexto;
+
+        protected IService<T> servico;
+
+        public GenericBaseController()
         {
             this.contexto = new AtacadoModel();
         }

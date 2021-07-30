@@ -1,5 +1,6 @@
 ﻿using Atacado.POCO.Model;
 using Atacado.Service.Estoque;
+using AtacadoRestApi.Ancestor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace AtacadoRestApi.Controllers
     /// Serviços de categoria utilizando disegn patterns.
     /// </summary>
     [RoutePrefix("atacado/estoque/subcategoria")]
-    public class SubcategoriaController : BaseController
+    public class SubcategoriaController : GenericBaseController<SubcategoriaPoco>
     {
         private SubcategoriaService servico;
 
@@ -110,8 +111,8 @@ namespace AtacadoRestApi.Controllers
         {
             try
             {
-                this.servico.Incluir(poco);
-                return Request.CreateResponse<SubcategoriaPoco>(HttpStatusCode.OK, poco);
+                SubcategoriaPoco respPoco = this.servico.Incluir(poco);
+                return Request.CreateResponse<SubcategoriaPoco>(HttpStatusCode.OK, respPoco);
             }
             catch (Exception ex)
             {
@@ -131,8 +132,8 @@ namespace AtacadoRestApi.Controllers
         {
             try
             {
-                this.servico.Atualizar(poco);
-                return Request.CreateResponse<SubcategoriaPoco>(HttpStatusCode.OK, poco);
+                SubcategoriaPoco respPoco = this.servico.Atualizar(poco);
+                return Request.CreateResponse<SubcategoriaPoco>(HttpStatusCode.OK, respPoco);
             }
             catch (Exception ex)
             {
@@ -163,16 +164,6 @@ namespace AtacadoRestApi.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
-        }
-
-        /// <summary>
-        /// Dispose do serviço.
-        /// </summary>
-        /// <param name="disposing"></param>
-        protected override void Dispose(bool disposing)
-        {
-            this.servico = null;
-            base.Dispose(disposing);
         }
     }
 }

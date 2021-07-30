@@ -1,5 +1,6 @@
 ﻿using Atacado.POCO.Model;
 using Atacado.Service.Localizacao;
+using AtacadoRestApi.Ancestor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace AtacadoRestApi.Controllers
     /// Serviços de Municipio utilizando disegn patterns.
     /// </summary>
     [RoutePrefix("atacado/localizacao/municipio")]
-    public class MunicipioController : BaseController
+    public class MunicipioController : GenericBaseController<MunicipioPoco>
     {
         private MunicipioService servico;
 
@@ -63,8 +64,8 @@ namespace AtacadoRestApi.Controllers
         {
             try
             {
-                this.servico.Incluir(poco);
-                return Request.CreateResponse<MunicipioPoco>(HttpStatusCode.OK, poco);
+                MunicipioPoco respPoco = this.servico.Incluir(poco);
+                return Request.CreateResponse<MunicipioPoco>(HttpStatusCode.OK, respPoco);
             }
             catch (Exception ex)
             {
@@ -84,8 +85,8 @@ namespace AtacadoRestApi.Controllers
         {
             try
             {
-                this.servico.Atualizar(poco);
-                return Request.CreateResponse<MunicipioPoco>(HttpStatusCode.OK, poco);
+                MunicipioPoco respPoco = this.servico.Atualizar(poco);
+                return Request.CreateResponse<MunicipioPoco>(HttpStatusCode.OK, respPoco);
             }
             catch (Exception ex)
             {
@@ -116,16 +117,6 @@ namespace AtacadoRestApi.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
-        }
-
-        /// <summary>
-        /// Dispose do serviço.
-        /// </summary>
-        /// <param name="disposing"></param>
-        protected override void Dispose(bool disposing)
-        {
-            this.servico = null;
-            base.Dispose(disposing);
         }
     }
 }

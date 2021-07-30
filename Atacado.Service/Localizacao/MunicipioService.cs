@@ -12,12 +12,10 @@ using Atacado.Mapping.Localizacao;
 
 namespace Atacado.Service.Localizacao
 {
-    public class MunicipioService : IService<MunicipioPoco>
+    public class MunicipioService :
+        GenericService<DbContext, Municipio, MunicipioPoco>,
+        IService<MunicipioPoco>
     {
-        private MunicipioRepository repositorio;
-
-        private MunicipioMap mapa;
-
         public MunicipioService(DbContext contexto)
         {
             this.repositorio = new MunicipioRepository(contexto);
@@ -60,6 +58,12 @@ namespace Atacado.Service.Localizacao
             Municipio nova = this.repositorio.Add(mun);
             MunicipioPoco novoPoco = this.mapa.GetMapper.Map<MunicipioPoco>(nova);
             return novoPoco;
+        }
+
+        public void Dispose()
+        {
+            this.repositorio = null;
+            this.mapa = null;
         }
     }
 }

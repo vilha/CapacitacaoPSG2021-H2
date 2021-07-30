@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Atacado.Service.Ancestor
 {
-    interface IService<T>
+    public interface IService<T>
         where T : class
     {
         T Incluir(T poco);

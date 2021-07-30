@@ -1,5 +1,6 @@
 ﻿using Atacado.POCO.Model;
 using Atacado.Service.Localizacao;
+using AtacadoRestApi.Ancestor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace AtacadoRestApi.Controllers
     /// Serviços de Mesoregiao utilizando disegn patterns.
     /// </summary>
     [RoutePrefix("atacado/localizacao/mesoregiao")]
-    public class MesoregiaoController : BaseController
+    public class MesoregiaoController : GenericBaseController<MesoregiaoPoco>
     {
         private MesoregiaoService servico;
 
@@ -137,8 +138,8 @@ namespace AtacadoRestApi.Controllers
         {
             try
             {
-                this.servico.Incluir(poco);
-                return Request.CreateResponse<MesoregiaoPoco>(HttpStatusCode.OK, poco);
+                MesoregiaoPoco respPoco = this.servico.Incluir(poco);
+                return Request.CreateResponse<MesoregiaoPoco>(HttpStatusCode.OK, respPoco);
             }
             catch (Exception ex)
             {
@@ -158,8 +159,8 @@ namespace AtacadoRestApi.Controllers
         {
             try
             {
-                this.servico.Atualizar(poco);
-                return Request.CreateResponse<MesoregiaoPoco>(HttpStatusCode.OK, poco);
+                MesoregiaoPoco respPoco = this.servico.Atualizar(poco);
+                return Request.CreateResponse<MesoregiaoPoco>(HttpStatusCode.OK, respPoco);
             }
             catch (Exception ex)
             {
@@ -190,16 +191,6 @@ namespace AtacadoRestApi.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
-        }
-
-        /// <summary>
-        /// Dispose do serviço.
-        /// </summary>
-        /// <param name="disposing"></param>
-        protected override void Dispose(bool disposing)
-        {
-            this.servico = null;
-            base.Dispose(disposing);
         }
     }
 }

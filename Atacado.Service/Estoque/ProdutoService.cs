@@ -12,11 +12,10 @@ using Atacado.Mapping.Estoque;
 
 namespace Atacado.Service.Estoque
 {
-    public class ProdutoService : IService<ProdutoPoco>
+    public class ProdutoService :
+        GenericService<DbContext, produto, ProdutoPoco>,
+        IService<ProdutoPoco>
     {
-        private ProdutoRepository repositorio;
-
-        private ProdutoMap mapa;
         public ProdutoService(DbContext contexto)
         {
             this.repositorio = new ProdutoRepository(contexto);
@@ -60,6 +59,5 @@ namespace Atacado.Service.Estoque
             ProdutoPoco novoPoco = this.mapa.GetMapper.Map<ProdutoPoco>(nova);
             return novoPoco;
         }
-
     }
 }

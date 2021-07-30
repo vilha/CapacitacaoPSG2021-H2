@@ -1,5 +1,6 @@
 ﻿using Atacado.POCO.Model;
 using Atacado.Service.Localizacao;
+using AtacadoRestApi.Ancestor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace AtacadoRestApi.Controllers
     /// Serviços de UnidadesFederacao utilizando disegn patterns.
     /// </summary>
     [RoutePrefix("atacado/localizacao/estados")]
-    public class UFController : BaseController
+    public class UFController : GenericBaseController<UFPoco>
     {
         private UFService servico;
 
@@ -169,8 +170,8 @@ namespace AtacadoRestApi.Controllers
         {
             try
             {
-                this.servico.Incluir(poco);
-                return Request.CreateResponse<UFPoco>(HttpStatusCode.OK, poco);
+                UFPoco respPoco = this.servico.Incluir(poco);
+                return Request.CreateResponse<UFPoco>(HttpStatusCode.OK, respPoco);
             }
             catch (Exception ex)
             {
@@ -190,8 +191,8 @@ namespace AtacadoRestApi.Controllers
         {
             try
             {
-                this.servico.Atualizar(poco);
-                return Request.CreateResponse<UFPoco>(HttpStatusCode.OK, poco);
+                UFPoco respPoco = this.servico.Atualizar(poco);
+                return Request.CreateResponse<UFPoco>(HttpStatusCode.OK, respPoco);
             }
             catch (Exception ex)
             {
@@ -222,16 +223,6 @@ namespace AtacadoRestApi.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
-        }
-
-        /// <summary>
-        /// Dispose do serviço.
-        /// </summary>
-        /// <param name="disposing"></param>
-        protected override void Dispose(bool disposing)
-        {
-            this.servico = null;
-            base.Dispose(disposing);
         }
     }
 }
