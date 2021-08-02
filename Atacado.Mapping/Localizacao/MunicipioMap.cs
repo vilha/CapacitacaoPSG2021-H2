@@ -18,7 +18,7 @@ namespace Atacado.Mapping.Localizacao
             {
                 cfg.CreateMap<Municipio, MunicipioPoco>();
 
-                cfg.CreateMap<ProdutoPoco, produto>();
+                cfg.CreateMap<MunicipioPoco, Municipio>();
             });
 
             this.GetMapper = configuration.CreateMapper();
